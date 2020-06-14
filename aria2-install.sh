@@ -44,9 +44,9 @@ function dealconf(){
 	#使用-P参数下载到指定文件夹
 	wget -P /etc/aria2.conf https://raw.githubusercontent.com/helloxz/ccaa/master/ccaa_dir/aria2.conf
 	#替换下载目录
-	sed -i "s%dir=%dir=${downpath}%g" /etc/ccaa/aria2.conf
+	sed -i "s%dir=%dir=${downpath}%g" /etc/aria2.conf
 	#设置RPC密钥
-	#sed -ir "s/rpc-secret=.*/rpc-secret=$PASS/g" /etc/ccaa/aria2.conf
+	#sed -ir "s/rpc-secret=.*/rpc-secret=$PASS/g" /etc/aria2.conf
 }
 #更新BTtracker
 function up_tracker(){
