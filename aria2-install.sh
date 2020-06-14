@@ -65,7 +65,9 @@ function up_tracker(){
 #最后的清理
 function clean_temp(){
 	#移除不再需要的软件
-	apk del wget tar make bzip2
+	apk del tar make bzip2
+	#删除临时文件
+	rm -rf /tmp/*
 	cd
 	#删除临时目录
 	rm -rf ${aria2_temp}
