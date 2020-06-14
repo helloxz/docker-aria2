@@ -8,7 +8,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin
 export PATH
 
 #路径设置
-aria2_url='https://github.com/q3aql/aria2-static-builds/releases/download/v1.35.0/aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2'
+aria2_url='http://soft.xiaoz.org/linux/aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2'
 #临时目录
 aria2_temp='/root/aria2_temp'
 #下载目录
