@@ -22,7 +22,7 @@ function setout(){
 	cd
 	mkdir -p ${aria2_temp}
 	#赋予启动脚本权限
-	chumod +x /usr/sbin/run.sh
+	chmod +x /usr/sbin/run.sh
 }
 
 #安装Aria2
