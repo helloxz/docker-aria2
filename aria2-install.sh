@@ -23,8 +23,22 @@ function setout(){
 	mkdir -p ${aria2_temp}
 	#赋予启动脚本权限
 	chmod +x /usr/sbin/run.sh
+	#创建session目录
+	touch aria2.session
 }
-
+#设置时区
+function set_timezone(){
+	#安装timezone
+	apk add -U tzdata
+	#查看时区列表
+	ls /usr/share/zoneinfo
+	#拷贝需要的时区文件到localtime
+	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+	#查看当前时间
+	date
+	#为了精简镜像，可以将tzdata删除了
+	apk del tzdata
+}
 #安装Aria2
 function install_aria2(){
 	#进入临时目录
@@ -47,6 +61,8 @@ function dealconf(){
 	wget -P /etc/ https://raw.githubusercontent.com/helloxz/ccaa/master/ccaa_dir/aria2.conf
 	#替换下载目录
 	sed -i "s%dir=%dir=${downpath}%g" /etc/aria2.conf
+	#替换session目录
+	sed -i "s%/etc/ccaa/aria2.session%/root/aria2.session%g" /etc/aria2.conf
 	#设置RPC密钥
 	#sed -ir "s/rpc-secret=.*/rpc-secret=$PASS/g" /etc/aria2.conf
 }
@@ -77,4 +93,4 @@ function clean_temp(){
 	echo 'All work has been completed.'
 	echo '-------------------------------------'
 }
-setout && install_aria2 && dealconf && up_tracker && clean_temp
+setout && set_timezone && install_aria2 && dealconf && up_tracker && clean_temp
