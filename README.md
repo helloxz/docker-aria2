@@ -24,8 +24,7 @@ docker build -t xxx/aria2:latest .
 docker run --name="aria2" -d -p 6800:6800 -p 51413:51413 \
     -v /data/download:/data/download \
     -e PASS="xiaoz.me" \
-    helloz/aria2:latest \
-    /usr/sbin/run.sh
+    helloz/aria2:latest
 ```
 
 * 6080/51413：为Aria2使用端口，请注意防火墙放行
@@ -42,8 +41,7 @@ docker run --name="aria2" -d -p 6800:6800 -p 51413:51413 \
 docker run --name="aria2" -d -p 6800:6800 -p 51413:51413 \
     -v /data/download:/data/download \
     -e PASS="xiaoz.me" \
-    helloz/aria2:1.0 \
-    /usr/sbin/run.sh
+    helloz/aria2
 ```
 
 
