@@ -26,6 +26,7 @@ function setout(){
 	wget -P /root/ https://raw.githubusercontent.com/helloxz/ccaa/master/ccaa_dir/aria2.conf
 	#赋予启动脚本权限
 	chmod +x /usr/sbin/run.sh
+	mkdir -p /etc/ccaa/
 }
 #设置时区
 function set_timezone(){
