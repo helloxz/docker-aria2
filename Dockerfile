@@ -7,5 +7,5 @@ COPY ./run.sh /usr/sbin
 COPY ./aria2-install.sh /root
 RUN sh aria2-install.sh
 VOLUME /data/download
-EXPOSE 6800 51413
+EXPOSE 6800 51000
 CMD ["sh","/usr/sbin/run.sh"]

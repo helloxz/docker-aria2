@@ -17,14 +17,15 @@ downpath='/data/download'
 #安装之前的准备
 function setout(){
 	#安装需要的软件
-	apk add wget tar make bzip2
+	apk add wget curl tar make bzip2
 	#创建临时目录
 	cd
 	mkdir -p ${aria2_temp}
+	#下载配置文件
+	#使用-P参数下载到指定文件夹
+	wget -P /root/ https://raw.githubusercontent.com/helloxz/ccaa/master/ccaa_dir/aria2.conf
 	#赋予启动脚本权限
 	chmod +x /usr/sbin/run.sh
-	#创建session目录
-	touch aria2.session
 }
 #设置时区
 function set_timezone(){
@@ -54,32 +55,7 @@ function install_aria2(){
 	#创建下载目录
 	mkdir -p ${downpath}
 }
-#处理配置文件
-function dealconf(){
-	cd ${aria2_temp}
-	#使用-P参数下载到指定文件夹
-	wget -P /etc/ https://raw.githubusercontent.com/helloxz/ccaa/master/ccaa_dir/aria2.conf
-	#替换下载目录
-	sed -i "s%dir=%dir=${downpath}%g" /etc/aria2.conf
-	#替换session目录
-	sed -i "s%/etc/ccaa/aria2.session%/root/aria2.session%g" /etc/aria2.conf
-	#设置RPC密钥
-	#sed -ir "s/rpc-secret=.*/rpc-secret=$PASS/g" /etc/aria2.conf
-}
-#更新BTtracker
-function up_tracker(){
-	#下载最新的bt-tracker
-	wget -O /tmp/trackers_best.txt https://api.xiaoz.org/trackerslist/
-	tracker=$(cat /tmp/trackers_best.txt)
-	#替换处理bt-tracker
-	tracker="bt-tracker="${tracker}
-	#更新aria2配置
-	sed -i '/bt-tracker.*/'d /etc/aria2.conf
-	echo ${tracker} >> /etc/aria2.conf
-	echo '-------------------------------------'
-	echo 'bt-tracker update completed.'
-	echo '-------------------------------------'
-}
+
 #最后的清理
 function clean_temp(){
 	#移除不再需要的软件
@@ -93,4 +69,4 @@ function clean_temp(){
 	echo 'All work has been completed.'
 	echo '-------------------------------------'
 }
-setout && set_timezone && install_aria2 && dealconf && up_tracker && clean_temp
+setout && set_timezone && install_aria2 && clean_temp
