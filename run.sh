@@ -21,7 +21,7 @@ fi
 #处理配置文件
 function dealconf(){
 	#替换下载目录
-	sed -i "s%dir=%dir=/data/download%g" ${aria2_conf}
+	sed -i "s%dir=.*%dir=/data/download%g" ${aria2_conf}
 	#设置RPC密钥
 	sed -i "s/rpc-secret=.*/rpc-secret=$PASS/g" ${aria2_conf}
 	#更改端口
