@@ -40,5 +40,6 @@ function dealconf(){
 	echo '-------------------------------------'
 }
 
+dealconf
 #运行Aria2
 aria2c --conf-path=${aria2_conf}
