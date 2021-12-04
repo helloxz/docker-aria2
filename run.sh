@@ -23,7 +23,7 @@ function dealconf(){
 	#替换下载目录
 	sed -i "s%dir=%dir=/data/download%g" ${aria2_conf}
 	#设置RPC密钥
-	sed -ir "s/rpc-secret=.*/rpc-secret=$PASS/g" ${aria2_conf}
+	sed -i "s/rpc-secret=.*/rpc-secret=$PASS/g" ${aria2_conf}
 	#更改端口
 	sed -i "s/listen-port=51413/listen-port=51000/g" ${aria2_conf}
 	#下载最新的bt-tracker
